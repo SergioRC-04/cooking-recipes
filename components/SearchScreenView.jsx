@@ -14,16 +14,23 @@ export default function SearchScreenView({
   filteredRecipes,
   onSearch,
   onRecipePress,
+  navigation,
 }) {
   return (
     <View style={styles.container}>
+      {/* Encabezado con el logo, título y botón de retroceso */}
       <View style={styles.header}>
-        <Image
-          source={require("../assets/lupaA.png")} // Asegúrate de que el logo esté en la carpeta `assets`
-          style={styles.logo}
-        />
+        <Image source={require("../assets/lupaA.png")} style={styles.logo} />
         <Text style={styles.title}>Search Recipes</Text>
+        <TouchableOpacity
+          style={{ marginLeft: "auto" }}
+          onPress={() => navigation.goBack()}
+        >
+          <Image source={require("../assets/atras1.png")} style={styles.logo} />
+        </TouchableOpacity>
       </View>
+
+      {/* Campo de entrada para el término de búsqueda */}
       <TextInput
         style={styles.searchInput}
         placeholder="Search by title or ingredients"
@@ -31,6 +38,8 @@ export default function SearchScreenView({
         value={searchTerm}
         onChangeText={onSearch}
       />
+
+      {/* Lista de recetas filtradas */}
       <FlatList
         data={filteredRecipes}
         keyExtractor={(item) => item.id}
@@ -40,7 +49,7 @@ export default function SearchScreenView({
             onPress={() => onRecipePress(item.id)}
           >
             <Image
-              source={require("../assets/recetas.png")} // Reemplaza con la ruta de tu imagen
+              source={require("../assets/recetas.png")}
               style={styles.recipeImage}
             />
             <View style={styles.subrecipeItem}>

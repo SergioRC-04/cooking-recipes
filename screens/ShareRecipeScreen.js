@@ -12,6 +12,7 @@ export default function ShareRecipeScreen({ route, navigation }) {
   const { recipeId } = route.params || {}; // Obtén el ID de la receta desde los parámetros de navegación
   const [users, setUsers] = useState([]);
 
+  // Hook de efecto para cargar la lista de usuarios al montar el componente
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -33,6 +34,7 @@ export default function ShareRecipeScreen({ route, navigation }) {
     fetchUsers();
   }, []);
 
+  // Función para compartir la receta con otro usuario
   const shareRecipeWithUser = async (recipientUid) => {
     try {
       await addDoc(collection(db, "sharedRecipes"), {
@@ -42,16 +44,17 @@ export default function ShareRecipeScreen({ route, navigation }) {
         sharedAt: new Date(),
       });
       Alert.alert("Éxito", "Receta compartida con éxito");
-      navigation.goBack(); // Regresa a la pantalla anterior
+      navigation.goBack();
     } catch (error) {
       console.error("Error al compartir la receta:", error);
       Alert.alert("Error", "No se pudo compartir la receta");
     }
   };
 
+  // Verifica si el ID de la receta está disponible
   if (!recipeId) {
     Alert.alert("Error", "No se pudo obtener el ID de la receta");
-    navigation.goBack(); // Regresa a la pantalla anterior
+    navigation.goBack();
     return null;
   }
 

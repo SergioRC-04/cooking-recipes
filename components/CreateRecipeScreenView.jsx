@@ -12,16 +12,23 @@ export default function CreateRecipeScreenView({
   state,
   onChangeText,
   onSaveRecipe,
+  navigation,
 }) {
   return (
     <View contentContainerStyle={styles.container}>
+      {/* Encabezado con el logo, título y botón de retroceso */}
       <View style={styles.header}>
-        <Image
-          source={require("../assets/recetasA.png")} // Asegúrate de que el logo esté en la carpeta `assets`
-          style={styles.logo}
-        />
+        <Image source={require("../assets/recetasA.png")} style={styles.logo} />
         <Text style={styles.title}>Create Recipe</Text>
+        <TouchableOpacity
+          style={{ marginLeft: "auto" }}
+          onPress={() => navigation.goBack()}
+        >
+          <Image source={require("../assets/atras1.png")} style={styles.logo} />
+        </TouchableOpacity>
       </View>
+
+      {/* Campo de entrada para el nombre de la receta */}
       <View style={styles.inputContainer}>
         <Text style={styles.othertitle}>Recipe Name</Text>
         <TextInput
@@ -32,6 +39,8 @@ export default function CreateRecipeScreenView({
           value={state.title}
         />
       </View>
+
+      {/* Campo de entrada para los ingredientes */}
       <Text style={styles.othertitle}>Ingredient</Text>
       <View style={styles.inputContainer}>
         <TextInput
@@ -43,6 +52,8 @@ export default function CreateRecipeScreenView({
           multiline={true}
         />
       </View>
+
+      {/* Campo de entrada para los pasos */}
       <Text style={styles.othertitle}>Steps</Text>
       <View style={styles.inputContainer}>
         <TextInput
@@ -54,6 +65,8 @@ export default function CreateRecipeScreenView({
           multiline={true}
         />
       </View>
+
+      {/* Botón para guardar la receta */}
       <TouchableOpacity style={styles.buttonContainer} onPress={onSaveRecipe}>
         <Text style={styles.buttonText}>Save Recipe</Text>
       </TouchableOpacity>

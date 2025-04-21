@@ -1,30 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { Alert } from "react-native";
-import appFirebase from "../credenciales.js";
+import appFirebase from "../credenciales.js"; // Configuración de Firebase
 import {
   getFirestore,
   collection,
   getDocs,
   query,
   where,
-} from "firebase/firestore";
-import { getAuth } from "firebase/auth";
-import HomeScreenView from "../components/HomeScreenView";
+} from "firebase/firestore"; // Métodos para interactuar con Firestore
+import { getAuth } from "firebase/auth"; // Servicio de autenticación de Firebase
+import HomeScreenView from "../components/HomeScreenView"; // Componente de vista para la pantalla principal
 
+// Inicializa Firestore y el servicio de autenticación de Firebase
 const db = getFirestore(appFirebase);
 const auth = getAuth(appFirebase);
 
+// Componente principal de la pantalla de inicio
 export default function HomeScreen(props) {
+  // Estado para almacenar las recetas del usuario
   const [recipes, setRecipes] = useState([]);
+  // Estado para almacenar las recetas compartidas con el usuario
   const [sharedRecipes, setSharedRecipes] = useState([]);
+  // Estado para almacenar el nombre del usuario
   const [userName, setUserName] = useState("");
 
+  // Hook de efecto para cargar datos al montar el componente
   useEffect(() => {
     const user = auth.currentUser;
     if (user) {
       setUserName(user.displayName || "Usuario");
     }
 
+    // Función para obtener las recetas del usuario desde Firestore
     const getRecipes = async () => {
       try {
         const user = auth.currentUser;
@@ -59,6 +66,7 @@ export default function HomeScreen(props) {
       }
     };
 
+    // Función para obtener las recetas compartidas con el usuario
     const getSharedRecipes = async () => {
       try {
         const user = auth.currentUser;

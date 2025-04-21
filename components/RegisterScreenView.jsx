@@ -13,18 +13,17 @@ export default function RegisterScreenView({
   state,
   onChangeText,
   onSaveUser,
-  onNavigateToLogin, // Nueva función para redirigir a la pantalla de inicio de sesión
+  onNavigateToLogin,
 }) {
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      {/* Contenedor del logo y título */}
       <View style={styles.logoContainer}>
-        <Image
-          source={require("../assets/logoutil.png")} // Asegúrate de que el logo esté en la carpeta `assets`
-          style={styles.logo}
-        />
+        <Image source={require("../assets/logoutil.png")} style={styles.logo} />
         <Text style={styles.title}>User Registration</Text>
       </View>
 
+      {/* Campo de entrada para el nombre */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -34,6 +33,8 @@ export default function RegisterScreenView({
           value={state.name}
         />
       </View>
+
+      {/* Campo de entrada para el apellido */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -43,6 +44,8 @@ export default function RegisterScreenView({
           value={state.lastname}
         />
       </View>
+
+      {/* Campo de entrada para el correo electrónico */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -53,6 +56,8 @@ export default function RegisterScreenView({
           keyboardType="email-address"
         />
       </View>
+
+      {/* Campo de entrada para el número de teléfono */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -63,6 +68,8 @@ export default function RegisterScreenView({
           keyboardType="phone-pad"
         />
       </View>
+
+      {/* Campo de entrada para la contraseña */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -73,6 +80,8 @@ export default function RegisterScreenView({
           secureTextEntry={true}
         />
       </View>
+
+      {/* Botón para registrar al usuario */}
       <TouchableOpacity style={styles.buttonContainer} onPress={onSaveUser}>
         <Text style={{ color: "#fff" }}>Register User</Text>
       </TouchableOpacity>

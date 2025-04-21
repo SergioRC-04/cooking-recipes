@@ -8,23 +8,23 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+// Componente principal de la vista de inicio de sesión
 export default function LoginScreenView({
   email,
   password,
   onChangeText,
   onLogin,
-  onNavigateToRegister, // Nueva función para redirigir a la pantalla de registro
+  onNavigateToRegister,
 }) {
   return (
     <View style={styles.container}>
+      {/* Contenedor del logo y título */}
       <View style={styles.logoContainer}>
-        <Image
-          source={require("../assets/logoutil.png")} // Asegúrate de que el logo esté en la carpeta `assets`
-          style={styles.logo}
-        />
+        <Image source={require("../assets/logoutil.png")} style={styles.logo} />
         <Text style={styles.title}>TastyRecipes</Text>
       </View>
 
+      {/* Campo de entrada para el correo electrónico */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -35,6 +35,8 @@ export default function LoginScreenView({
           keyboardType="email-address"
         />
       </View>
+
+      {/* Campo de entrada para la contraseña */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -45,6 +47,8 @@ export default function LoginScreenView({
           secureTextEntry={true}
         />
       </View>
+
+      {/* Botón para iniciar sesión */}
       <TouchableOpacity style={styles.buttonContainer} onPress={onLogin}>
         <Text style={{ color: "#fff" }}>Login</Text>
       </TouchableOpacity>

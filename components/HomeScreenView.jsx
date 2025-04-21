@@ -16,14 +16,13 @@ export default function HomeScreenView({
 }) {
   return (
     <View style={{ flex: 1 }}>
+      {/* Encabezado con el logo y el saludo al usuario */}
       <View style={styles.header}>
-        <Image
-          source={require("../assets/logoutil.png")} // Asegúrate de que el logo esté en la carpeta `assets`
-          style={styles.logo}
-        />
+        <Image source={require("../assets/logoutil.png")} style={styles.logo} />
         <Text style={styles.title}>Welcome, {userName}</Text>
       </View>
 
+      {/* Contenedor principal con desplazamiento */}
       <ScrollView contentContainerStyle={styles.container}>
         <TouchableOpacity
           style={styles.bottonsearch}
@@ -35,8 +34,8 @@ export default function HomeScreenView({
           />
         </TouchableOpacity>
 
+        {/* Sección de recetas del usuario */}
         <Text style={styles.listTitle}>My Recipes</Text>
-
         <View style={styles.recipeList}>
           {recipes.map((recipe) => (
             <TouchableOpacity
@@ -63,8 +62,8 @@ export default function HomeScreenView({
           ))}
         </View>
 
+        {/* Sección de recetas compartidas */}
         <Text style={styles.listTitle}>Shared Recipes</Text>
-
         <View style={styles.recipeList}>
           {sharedRecipes.map((recipe) => (
             <TouchableOpacity
@@ -75,7 +74,7 @@ export default function HomeScreenView({
               }
             >
               <Image
-                source={require("../assets/recetas.png")} // Reemplaza con la ruta de tu imagen
+                source={require("../assets/recetas.png")}
                 style={styles.recipeImage}
               />
               <View style={styles.recipeTextContainer}>
@@ -94,7 +93,7 @@ export default function HomeScreenView({
         </View>
       </ScrollView>
 
-      {/* Footer */}
+      {/* Footer con el botón para agregar una nueva receta */}
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.footerButton}
@@ -197,7 +196,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     flexDirection: "row",
-    justifyContent: "center", // Centra el botón horizontalmente
+    justifyContent: "center",
     alignItems: "center",
     paddingVertical: 10,
     backgroundColor: "#fff",
@@ -208,7 +207,7 @@ const styles = StyleSheet.create({
   },
   footerButton: {
     paddingVertical: 10,
-    paddingHorizontal: 30, // Ajusta el ancho del botón
+    paddingHorizontal: 30,
     backgroundColor: "#EC8B14",
     borderRadius: 25,
     alignItems: "center",

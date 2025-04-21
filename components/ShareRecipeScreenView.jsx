@@ -10,6 +10,7 @@ import {
 export default function ShareRecipeScreenView({ users, onShare }) {
   return (
     <View style={styles.container}>
+      {/* Título de la pantalla */}
       <Text style={styles.title}>Selecciona un usuario para compartir</Text>
       <FlatList
         data={users}
@@ -38,22 +39,22 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     padding: 20,
-    backgroundColor: "#fff", // Fondo blanco consistente con las otras pantallas
+    backgroundColor: "#fff",
   },
   title: {
     fontSize: 22,
     fontWeight: "bold",
-    color: "#EC8B14", // Color naranja consistente con los títulos anteriores
+    color: "#EC8B14",
     marginBottom: 20,
     textAlign: "center",
-    textTransform: "uppercase", // Texto en mayúsculas para consistencia
+    textTransform: "uppercase",
   },
   userItem: {
-    flexDirection: "row", // Alinea el contenido horizontalmente
-    alignItems: "center", // Centra verticalmente el contenido
+    flexDirection: "row",
+    alignItems: "center",
     padding: 15,
-    backgroundColor: "#f9f9f9", // Fondo claro para los elementos
-    borderRadius: 15, // Bordes redondeados consistentes
+    backgroundColor: "#f9f9f9",
+    borderRadius: 15,
     marginBottom: 15,
     borderWidth: 1,
     borderColor: "#ddd",
@@ -61,18 +62,18 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 3, // Sombra para Android
+    elevation: 3,
   },
   userName: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#333",
-    flex: 1, // Permite que el nombre ocupe el espacio restante
+    flex: 1,
   },
   userEmail: {
     fontSize: 14,
     color: "#555",
-    flex: 1, // Permite que el correo ocupe el espacio restante
+    flex: 1,
   },
   emptyText: {
     fontSize: 16,

@@ -3,13 +3,18 @@ import appFirebase from "../credenciales.js";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import SearchScreenView from "../components/SearchScreenView";
 
+// Inicializa Firestore
 const db = getFirestore(appFirebase);
 
 export default function SearchScreen({ navigation }) {
+  // Estado para almacenar todas las recetas
   const [recipes, setRecipes] = useState([]);
+  // Estado para almacenar el término de búsqueda ingresado por el usuario
   const [searchTerm, setSearchTerm] = useState("");
+  // Estado para almacenar las recetas filtradas según el término de búsqueda
   const [filteredRecipes, setFilteredRecipes] = useState([]);
 
+  // Hook de efecto para cargar las recetas al montar el componente
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
@@ -34,6 +39,7 @@ export default function SearchScreen({ navigation }) {
     fetchRecipes();
   }, []);
 
+  // Función para manejar la búsqueda de recetas
   const handleSearch = (text) => {
     setSearchTerm(text);
 
@@ -46,6 +52,7 @@ export default function SearchScreen({ navigation }) {
     setFilteredRecipes(filtered);
   };
 
+  // Renderiza el componente de vista y pasa las props necesarias
   return (
     <SearchScreenView
       searchTerm={searchTerm}
@@ -54,6 +61,7 @@ export default function SearchScreen({ navigation }) {
       onRecipePress={(recipeId) =>
         navigation.navigate("RecipeDetail", { recipeId })
       }
+      navigation={navigation}
     />
   );
 }
