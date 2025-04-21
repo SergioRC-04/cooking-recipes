@@ -6,6 +6,7 @@ import {
   FlatList,
   TouchableOpacity,
   StyleSheet,
+  Image,
 } from "react-native";
 
 export default function SearchScreenView({
@@ -16,9 +17,17 @@ export default function SearchScreenView({
 }) {
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <Image
+          source={require("../assets/lupaA.png")} // Asegúrate de que el logo esté en la carpeta `assets`
+          style={styles.logo}
+        />
+        <Text style={styles.title}>Search Recipes</Text>
+      </View>
       <TextInput
         style={styles.searchInput}
-        placeholder="Buscar por título o ingredientes"
+        placeholder="Search by title or ingredients"
+        placeholderTextColor="#94A3B8"
         value={searchTerm}
         onChangeText={onSearch}
       />
@@ -30,12 +39,21 @@ export default function SearchScreenView({
             style={styles.recipeItem}
             onPress={() => onRecipePress(item.id)}
           >
-            <Text style={styles.recipeTitle}>{item.title}</Text>
-            <Text style={styles.recipeSubtitle}>Creador: {item.creator}</Text>
+            <Image
+              source={require("../assets/recetas.png")} // Reemplaza con la ruta de tu imagen
+              style={styles.recipeImage}
+            />
+            <View style={styles.subrecipeItem}>
+              <Text style={styles.recipeTitle}>{item.title}</Text>
+              <Text style={styles.recipeSubtitle}>Creator: {item.creator}</Text>
+              <Text style={styles.recipeingre}>
+                Ingredients: {item.ingredients}
+              </Text>
+            </View>
           </TouchableOpacity>
         )}
         ListEmptyComponent={
-          <Text style={styles.emptyText}>No se encontraron recetas</Text>
+          <Text style={styles.emptyText}>No recipes found</Text>
         }
       />
     </View>
@@ -45,28 +63,69 @@ export default function SearchScreenView({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: "#f8f9fa",
+    backgroundColor: "#fff",
+  },
+  header: {
+    flexDirection: "row",
+    marginBottom: 1,
+    marginHorizontal: 0,
+    paddingTop: 50,
+    paddingHorizontal: 20,
+    alignItems: "baseline",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    backgroundColor: "#fff",
+  },
+  logo: {
+    width: 20,
+    height: 20,
+    marginRight: 10,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#EC8B14",
+    textAlign: "center",
+    marginBottom: 20,
+    textTransform: "uppercase",
   },
   searchInput: {
     borderWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 8,
+    borderRadius: 25,
     padding: 10,
     backgroundColor: "#fff",
     fontSize: 16,
-    marginBottom: 20,
-  },
-  recipeItem: {
-    padding: 15,
-    backgroundColor: "#fff",
-    borderRadius: 8,
-    marginBottom: 10,
+    margin: 20,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+  },
+  recipeItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 20,
+    marginHorizontal: 20,
+    backgroundColor: "#f9f9f9",
+    borderRadius: 15,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  subrecipeItem: {
+    width: "70%",
+    flexDirection: "column",
+    marginRight: 15,
   },
   recipeTitle: {
     fontSize: 16,
@@ -77,10 +136,20 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#555",
   },
+  recipeImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 10,
+    marginRight: 15,
+  },
   emptyText: {
     fontSize: 16,
     color: "#777",
     textAlign: "center",
     marginTop: 20,
+  },
+  recipeingre: {
+    fontSize: 12,
+    color: "#777",
   },
 });

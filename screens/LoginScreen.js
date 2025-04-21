@@ -29,12 +29,17 @@ export default function LoginScreen(props) {
     }
   };
 
+  const navigateToRegister = () => {
+    props.navigation.navigate("Register");
+  };
+
   return (
     <LoginScreenView
       email={state.email}
       password={state.password}
       onChangeText={handleChangeText}
       onLogin={loginUser}
+      onNavigateToRegister={navigateToRegister} // Pasar la función de navegación al componente
     />
   );
 }

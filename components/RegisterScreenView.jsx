@@ -4,23 +4,32 @@ import {
   View,
   Text,
   TextInput,
-  Button,
+  TouchableOpacity,
   StyleSheet,
+  Image,
 } from "react-native";
 
 export default function RegisterScreenView({
   state,
   onChangeText,
   onSaveUser,
+  onNavigateToLogin, // Nueva función para redirigir a la pantalla de inicio de sesión
 }) {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Registro de Usuario</Text>
+      <View style={styles.logoContainer}>
+        <Image
+          source={require("../assets/logoutil.png")} // Asegúrate de que el logo esté en la carpeta `assets`
+          style={styles.logo}
+        />
+        <Text style={styles.title}>User Registration</Text>
+      </View>
 
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Nombre"
+          placeholder="First Name"
+          placeholderTextColor="#94A3B8"
           onChangeText={(value) => onChangeText(value, "name")}
           value={state.name}
         />
@@ -28,7 +37,8 @@ export default function RegisterScreenView({
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Apellido"
+          placeholder="Last Name"
+          placeholderTextColor="#94A3B8"
           onChangeText={(value) => onChangeText(value, "lastname")}
           value={state.lastname}
         />
@@ -36,7 +46,8 @@ export default function RegisterScreenView({
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Correo Electrónico"
+          placeholder="Email Address"
+          placeholderTextColor="#94A3B8"
           onChangeText={(value) => onChangeText(value, "email")}
           value={state.email}
           keyboardType="email-address"
@@ -45,7 +56,8 @@ export default function RegisterScreenView({
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Número de Teléfono"
+          placeholder="Phone Number"
+          placeholderTextColor="#94A3B8"
           onChangeText={(value) => onChangeText(value, "number")}
           value={state.number}
           keyboardType="phone-pad"
@@ -54,15 +66,26 @@ export default function RegisterScreenView({
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Contraseña"
+          placeholder="Password"
+          placeholderTextColor="#94A3B8"
           onChangeText={(value) => onChangeText(value, "password")}
           value={state.password}
           secureTextEntry={true}
         />
       </View>
-      <View style={styles.buttonContainer}>
-        <Button title="Registrar Usuario" onPress={onSaveUser} />
-      </View>
+      <TouchableOpacity style={styles.buttonContainer} onPress={onSaveUser}>
+        <Text style={{ color: "#fff" }}>Register User</Text>
+      </TouchableOpacity>
+
+      {/* Texto para redirigir al inicio de sesión */}
+      <TouchableOpacity
+        style={styles.loginContainer}
+        onPress={() => onNavigateToLogin()}
+      >
+        <Text style={styles.loginText}>
+          Already have an account? <Text style={styles.loginLink}>Login</Text>
+        </Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 }
@@ -71,29 +94,70 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     padding: 20,
-    backgroundColor: "#f8f9fa",
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#333",
-    textAlign: "center",
-    marginBottom: 20,
+    justifyContent: "center",
+    backgroundColor: "#fff",
   },
   inputContainer: {
-    marginBottom: 15,
+    marginBottom: 20,
   },
   input: {
     borderWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 8,
+    borderRadius: 25,
     padding: 10,
+    marginHorizontal: 20,
     backgroundColor: "#fff",
-    fontSize: 16,
+    fontSize: 14,
+    // Shadows for iOS
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    // Shadows for Android
+    elevation: 5,
   },
   buttonContainer: {
+    borderRadius: 25,
+    padding: 10,
+    marginHorizontal: 20,
+    backgroundColor: "#EC8B14",
+    fontSize: 14,
+    alignItems: "center",
+    // Shadows for iOS
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    // Shadows for Android
+    elevation: 5,
+  },
+  loginContainer: {
     marginTop: 20,
-    borderRadius: 8,
-    overflow: "hidden",
+    alignItems: "center",
+  },
+  loginText: {
+    fontSize: 14,
+    color: "#333",
+  },
+  loginLink: {
+    fontSize: 14,
+    color: "#EC8B14",
+    fontWeight: "bold",
+  },
+  logoContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 30,
+  },
+  title: {
+    fontSize: 24,
+    color: "#333",
+    textAlign: "center",
+  },
+  logo: {
+    width: 30,
+    height: 30,
+    marginRight: 10,
   },
 });

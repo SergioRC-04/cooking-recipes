@@ -67,12 +67,16 @@ export default function RegisterScreen(props) {
       Alert.alert("Error", "Hubo un problema al registrar el usuario");
     }
   };
+  const navigateToLogin = () => {
+    props.navigation.navigate("Login"); // Navega a la pantalla de inicio de sesión
+  };
 
   return (
     <RegisterScreenView
       state={state}
       onChangeText={handleChangeText}
       onSaveUser={saveUser}
+      onNavigateToLogin={navigateToLogin} // Pasa la función de navegación
     />
   );
 }

@@ -11,14 +11,18 @@ export default function RecipeDetailScreenView({ recipe, onShare, loading }) {
   if (loading) {
     return (
       <View style={styles.container}>
-        <Text>Cargando detalles de la receta...</Text>
+        <Text style={styles.loadingText}>
+          Cargando detalles de la receta...
+        </Text>
       </View>
     );
   }
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>{recipe.title}</Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>{recipe.title}</Text>
+      </View>
       <Text style={styles.subtitle}>Creador: {recipe.creator}</Text>
       <Text style={styles.date}>
         Fecha de creación:{" "}
@@ -38,46 +42,80 @@ export default function RecipeDetailScreenView({ recipe, onShare, loading }) {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    padding: 20,
-    backgroundColor: "#f8f9fa",
+    backgroundColor: "#fff",
+  },
+  header: {
+    flexDirection: "row",
+    marginBottom: 1,
+    width: "100%",
+    marginHorizontal: 0,
+    paddingTop: 50,
+    paddingHorizontal: 20,
+    alignItems: "baseline",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    backgroundColor: "#fff",
+  },
+  loadingText: {
+    fontSize: 16,
+    color: "#555",
+    textAlign: "center",
+    marginTop: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#333",
-    marginBottom: 10,
+    color: "#EC8B14", // Color consistente con los títulos anteriores
+    marginBottom: 20,
     textAlign: "center",
+    textTransform: "uppercase",
   },
   subtitle: {
     fontSize: 16,
     color: "#555",
     marginBottom: 10,
     textAlign: "center",
+    paddingTop: 20,
+    paddingHorizontal: 20,
   },
   date: {
     fontSize: 14,
     color: "#777",
     marginBottom: 20,
     textAlign: "center",
+    paddingHorizontal: 20,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: "bold",
     color: "#333",
-    marginBottom: 5,
+    marginBottom: 10,
+    textTransform: "uppercase",
+    paddingHorizontal: 20,
   },
   text: {
     fontSize: 16,
     color: "#555",
     marginBottom: 15,
     lineHeight: 22,
+    textAlign: "justify",
+    paddingHorizontal: 20,
   },
   shareButton: {
-    backgroundColor: "#007bff",
+    backgroundColor: "#EC8B14", // Color consistente con los botones anteriores
     padding: 15,
-    borderRadius: 8,
+    borderRadius: 25, // Bordes redondeados consistentes
     alignItems: "center",
     marginTop: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5, // Sombra para Android
+    marginHorizontal: 20,
   },
   shareButtonText: {
     color: "#fff",
